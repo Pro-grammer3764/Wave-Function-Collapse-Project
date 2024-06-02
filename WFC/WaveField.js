@@ -13,7 +13,7 @@ class WaveField {
         for (let x = 0; x < this.dim.x; x++) {
             this.field[x] = [];
             for (let y = 0; y < this.dim.y; y++) {
-                this.field[x][y] = random(this.possibilities);
+                this.field[x][y] = new Cell(possibilities);
             }
         }
     }
@@ -23,8 +23,7 @@ class WaveField {
         stroke(255);
         for (let x = 0; x < this.dim.x; x++) {
             for (let y = 0; y < this.dim.y; y++) {
-                fill(dict[this.field[x][y]]);
-                rect(x * this.size.x, y * this.size.y, this.size.x, this.size.y);
+                this.field[x][y].show(dict, x * this.size.x, y * this.size.y, this.size.x, this.size.y);
             }
         }
         pop();

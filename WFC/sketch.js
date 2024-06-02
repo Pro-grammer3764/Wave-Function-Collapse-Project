@@ -41,7 +41,14 @@ function setup() {
 
 function draw() {
     background(0);
-    // console.log("(" + floor(mouseX / dim.x) + ", " + floor(mouseY / dim.y) + ")");
+    // console.log("(" + floor(mouseX / size.x) + ", " + floor(mouseY / size.y) + ")");
 
     field.show(color_dictionairy);
+}
+
+function mouseClicked() {
+    let x = floor(mouseX / size.x);
+    let y = floor(mouseY / size.y);
+
+    field.field[x][y].collapse();
 }

@@ -29,12 +29,4 @@ class Cell {
         fill(col);
         rect(x, y, x + w, y + h);
     }
-
-    collapse() {
-        //collapse cell to random state from its possibilities
-        if (!this.collapsed) {
-            this.state = random(this.possibilities);
-            this.collapsed = true;
-        }
-    }
 }

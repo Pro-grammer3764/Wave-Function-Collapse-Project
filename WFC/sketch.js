@@ -12,6 +12,9 @@ let color_dictionairy = {
     4: [255, 0, 0]
 }
 
+// the first cell which gets collapsed by default
+let icebreak = [0, 0];
+
 function setup() {
     createCanvas(400, 400);
 
@@ -37,12 +40,12 @@ function setup() {
     size = createVector(width / dim.x, height / dim.y);
 
     field = new WaveField(dim, size, possibilities, rules);
+
+    field.collapse(icebreak[0], icebreak[1]);
 }
 
 function draw() {
     background(0);
-    // console.log("(" + floor(mouseX / size.x) + ", " + floor(mouseY / size.y) + ")");
-
     field.show(color_dictionairy);
 }
 
@@ -50,5 +53,5 @@ function mouseClicked() {
     let x = floor(mouseX / size.x);
     let y = floor(mouseY / size.y);
 
-    field.field[x][y].collapse();
+    field.collapse(x, y);
 }

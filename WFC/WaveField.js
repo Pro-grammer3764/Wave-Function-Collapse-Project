@@ -28,4 +28,16 @@ class WaveField {
         }
         pop();
     }
+
+    collapse(x, y) {
+        if (!this.field[x][y].collapsed) {
+            this.field[x][y].state = random(this.field[x][y].possibilities);
+            this.field[x][y].collapsed = true;
+        }
+    }
 }
+
+// when re-calculating possibilities:
+// while looping over each of the points in the rule window
+// it is valid if every point is contained in the possibilities list
+// for a default cell would always be true, only the cells which have less entropy will need to be checked

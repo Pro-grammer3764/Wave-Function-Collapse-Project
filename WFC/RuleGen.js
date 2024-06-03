@@ -24,7 +24,8 @@ class RuleGen {
         }
 
         if (sorted) {
-            rules.sort((a, b) => a[1][1] - b[1][1]);
+            let mid = ceil((this.rule_size - 1) / 2);
+            rules.sort((a, b) => a[mid][mid] - b[mid][mid]);
         }
 
         return rules;

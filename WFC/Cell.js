@@ -1,6 +1,7 @@
 class Cell {
-    constructor(possibilities) {
-        this.possibilities = possibilities;
+    constructor(possible_cols, possible_rules) {
+        this.possible_cols = possible_cols;
+        this.possible_rules = possible_rules;
         this.collapsed = false;
         this.state = null;
     }
@@ -13,18 +14,20 @@ class Cell {
             return;
         }
 
-        //if not collapsed draw the square average color of all the possibilities
+        //if not collapsed draw the square average color of all the possible_cols
         let col = [0, 0, 0];
 
-        for (let i = 0; i < this.possibilities.length; i++) {
-            col[0] += pow(dict[this.possibilities[i]][0], 2);
-            col[1] += pow(dict[this.possibilities[i]][1], 2);
-            col[2] += pow(dict[this.possibilities[i]][2], 2);
+        let l = this.possible_rules.length;
+
+        for (let i = 0; i < l; i++) {
+            col[0] += dict[this.possible_rules[i][1][1]][0];
+            col[1] += dict[this.possible_rules[i][1][1]][1];
+            col[2] += dict[this.possible_rules[i][1][1]][2];
         }
 
-        col[0] = pow(col[0] / this.possibilities.length, 0.5);
-        col[1] = pow(col[1] / this.possibilities.length, 0.5);
-        col[2] = pow(col[2] / this.possibilities.length, 0.5);
+        col[0] = col[0] / l, 1;
+        col[1] = col[1] / l, 1;
+        col[2] = col[2] / l, 1;
 
         fill(col);
         rect(x, y, x + w, y + h);

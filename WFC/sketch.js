@@ -44,12 +44,17 @@ function setup() {
 
     // innitialize output field
     field = new WaveField(dim, size, possibilities, rules, 3);
-    field.collapse(icebreak[0], icebreak[1]);
 }
 
 function draw() {
     background(0);
     field.show(color_dictionairy);
+
+    field.collapse(icebreak[0], icebreak[1]);
+
+    field.show(color_dictionairy);
+
+    noLoop();
 }
 
 function mouseClicked() {

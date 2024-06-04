@@ -57,7 +57,8 @@ class WaveField {
 
         // go through all the rules
         this.rules.forEach((rule) => {
-            // loop through each thingy in the rule
+            let possible_passes = (this.rule_size * this.rule_size) - 1;
+            let passes = 0;
 
             for (let x = 0; x < this.rule_size; x++) {
                 for (let y = 0; y < this.rule_size; y++) {
@@ -67,10 +68,21 @@ class WaveField {
 
                     if (cx < this.dim.x && cx >= 0 && cy < this.dim.y && cy >= 0) {
                         if (!(cx == centerX && cy == centerY)) {
-                            // this is a cell that needs to be crosschecked
+                            // this is a cell that needs to contain the possibilitiy of the color
+
+                            let col = rule[x][y];
+
+                            if (this.field[cx][cy].possible_cols.includes(col)) {
+                                // this cell is compatable with this part of the rule
+                                passes++;
+                            }
                         }
                     }
                 }
+            }
+
+            if (passes < possible_passes) {
+                // this cell is not compatable with this rule
             }
         });
     }
